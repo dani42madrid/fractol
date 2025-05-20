@@ -10,7 +10,7 @@ CC := cc
 CFLAGS := -Wall -Wextra -Werror -I. -I$(LIBFT_DIR) -I$(MLX_DIR)
 
 # Source files
-SRC := test01.c test02.c
+SRC := test01.c test02.c test03.c
 OBJ := $(SRC:%.c=%.o)
 
 # Library files

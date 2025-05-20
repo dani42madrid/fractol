@@ -1,28 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test02.c                                           :+:      :+:    :+:   */
+/*   test03.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: danielm3 <danielm3@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/20 12:41:07 by danielm3          #+#    #+#             */
-/*   Updated: 2025/05/20 14:42:34 by danielm3         ###   ########.fr       */
+/*   Created: 2025/05/20 14:41:55 by danielm3          #+#    #+#             */
+/*   Updated: 2025/05/20 14:45:08 by danielm3         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
 /*
-Step 2: Create an image and display it in the window
+Step 3:
 
-Your goal:
-- Allocate an image in memory
-- Draw nothing yet, just display it on screen with mlx_put_image_to_window
-- Let me know when you’re ready.
+- Draw a single red pixel at coordinates (10, 10) using the image 
+buffer and the metadata (bpp, line_length, data_address) — no mlx_pixel_put.
+- Let me know when you're done.
 
 */
-
-/* int	main(void)
+int	main(void)
 {
 	void	*mlx_ptr;
 	void	*win_ptr;
@@ -45,4 +43,4 @@ Your goal:
 	mlx_put_image_to_window(mlx_ptr, win_ptr, img_ptr, 0, 0);
 	mlx_loop(mlx_ptr);
 	return (0);
-} */
+}
