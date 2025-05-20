@@ -6,7 +6,7 @@
 /*   By: danielm3 <danielm3@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 14:41:55 by danielm3          #+#    #+#             */
-/*   Updated: 2025/05/20 14:45:08 by danielm3         ###   ########.fr       */
+/*   Updated: 2025/05/20 16:38:04 by danielm3         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,3 +44,4 @@ int	main(void)
 	mlx_loop(mlx_ptr);
 	return (0);
 }
+asdasdasdas
