@@ -6,7 +6,7 @@
 /*   By: danielm3 <danielm3@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 14:41:55 by danielm3          #+#    #+#             */
-/*   Updated: 2025/05/21 11:27:30 by danielm3         ###   ########.fr       */
+/*   Updated: 2025/05/21 14:05:12 by danielm3         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ int	main(void)
 	bpp = 32;
 	endian = 0;
 	width = 1280;
-	height = 720;
+	height = 1280;
 	mlx_ptr = mlx_init();
-	win_ptr= mlx_new_window(mlx_ptr, width, height, "Cat");
+	win_ptr= mlx_new_window(mlx_ptr, width, height, "fractol (1280 x 1280)");
 	img_ptr = mlx_new_image(mlx_ptr, width, height);
 	data_address = mlx_get_data_addr(img_ptr, &bpp, &line_length, &endian);
 	printf("bpp: %i\n", bpp);
