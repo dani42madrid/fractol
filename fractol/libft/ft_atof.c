@@ -18,17 +18,46 @@ static int	ft_isspace(char c)
 		|| c == '\r' || c == '\t' || c == '\v');
 }
 
+static int	parse_whole_part(const char *str, int *i)
+{
+	int	result;
 
+	result = 0;
+	while (ft_isdigit(str[*i]))
+	{
+		result = result * 10 + (str[*i] - '0');
+		(*i)++;
+	}
+	return (result);
+}
+
+static double	parse_decimal_part(const char *str, int *i)
+{
+	double	result;
+	double	divisor;
+
+	result = 0.0;
+	divisor = 10.0;
+	if (str[*i] == '.' || str[*i] == ',')
+		(*i)++;
+	while (ft_isdigit(str[*i]))
+	{
+		result += (str[*i] - '0') / divisor;
+		divisor *= 10.0;
+		(*i)++;
+	}
+	return (result);
+}
 
 double	ft_atof(const char *str)
 {
-	int	i;
-	int	mincount;
-	int	result;
+	int		i;
+	int		sign;
+	double	res;
 
 	i = 0;
-	result = 0;
-	mincount = 1;
+	sign = 1;
+	res = 0.0;
 	while (ft_isspace(str[i]))
 		i++;
 	if (str[i] == '-' || str[i] == '+')
@@ -37,14 +66,12 @@ double	ft_atof(const char *str)
 			sign = -1;
 		i++;
 	}
-	if (!ft_isdigit(str[i]))
-		return (0);
-	while (ft_isdigit(str[i]))
-	{
-		result = result * 10 + (str[i] - '0');
-		i++;
-	}
+	if (!ft_isdigit(str[i]) && str[i] != '.' && str[i] != ',')
+		return (0.0);
+	res += parse_whole_part(str, &i);
+	if (str[i] == '.' || str[i] == ',')
+		res += parse_decimal_part(str, &i);
 	if (str[i] != '\0')
-		return (0);
-	return (result * sign);
+		return (0.0);
+	return (sign * res);
 }

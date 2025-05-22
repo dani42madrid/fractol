@@ -6,7 +6,7 @@
 /*   By: danielm3 <danielm3@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 10:20:30 by danielm3          #+#    #+#             */
-/*   Updated: 2025/05/22 11:32:11 by danielm3         ###   ########.fr       */
+/*   Updated: 2025/05/22 13:33:00 by danielm3         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,20 @@ void	print_wrong_args()
 	free(error_msg);
 	exit(EXIT_FAILURE);
 }
+static int	decimal_separators(char *s)
+{
+	int	count;
+
+	count = 0;
+
+	while (*s)
+	{
+		if (*s == '.' || *s == ',')
+			count++;
+	}
+	return (count);
+}
+
 
 void	check_args(int argc, char **argv)
 {
