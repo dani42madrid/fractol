@@ -6,7 +6,7 @@
 /*   By: danielm3 <danielm3@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 21:08:30 by danielm3          #+#    #+#             */
-/*   Updated: 2025/05/24 13:15:10 by danielm3         ###   ########.fr       */
+/*   Updated: 2025/05/24 13:20:47 by danielm3         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ typedef struct s_mlx {
 	void	*mlx_ptr;
 	void	*win_ptr;
 	void	*img_ptr;
+	int		width;
+	int		height;
 	char	*data_address;
 	int		bpp;
 	int		line_length;
@@ -37,7 +39,7 @@ void	check_args(int argc, char **argv);
 /* fractol.c: Main coordination for the fractal generation and rendering */
 void	put_pixel(char *addr, int x, int y, int colour, int line_len, int bpp);
 int		escape_iterations(double c_real, double c_imag, int max_iter);
-void	mlx_and_img_creation(t_mlx *mlx, int width, int height);
+void	mlx_and_img_creation(t_mlx *mlx);
 
 
 double	map_x(int x, int width, double x_min, double x_max);
