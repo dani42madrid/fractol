@@ -6,7 +6,7 @@
 /*   By: danielm3 <danielm3@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 12:41:07 by danielm3          #+#    #+#             */
-/*   Updated: 2025/05/20 14:42:34 by danielm3         ###   ########.fr       */
+/*   Updated: 2025/05/24 15:32:32 by danielm3         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ Your goal:
 
 */
 
-/* int	main(void)
+int	main(void)
 {
 	void	*mlx_ptr;
 	void	*win_ptr;
@@ -45,4 +45,4 @@ Your goal:
 	mlx_put_image_to_window(mlx_ptr, win_ptr, img_ptr, 0, 0);
 	mlx_loop(mlx_ptr);
 	return (0);
-} */
+}

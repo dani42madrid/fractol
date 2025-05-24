@@ -6,7 +6,7 @@
 /*   By: danielm3 <danielm3@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 20:26:22 by danielm3          #+#    #+#             */
-/*   Updated: 2025/05/20 12:42:41 by danielm3         ###   ########.fr       */
+/*   Updated: 2025/05/24 15:32:38 by danielm3         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ Use only what you need to:
 - Keep it open
 
 */
-/* 
+
 #include "fractol.h"
 
 int	main(void)
@@ -33,4 +33,4 @@ int	main(void)
 	img_buff = mlx_new_image(mlx_ptr, 1280, 720);
 	mlx_loop(mlx_ptr);
 	return (0);
-} */
+}

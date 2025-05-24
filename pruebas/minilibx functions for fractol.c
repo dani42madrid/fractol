@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   functions.c                                        :+:      :+:    :+:   */
+/*   minilibx functions for fractol.c                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: danielm3 <danielm3@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 12:29:05 by danielm3          #+#    #+#             */
-/*   Updated: 2025/05/20 12:29:07 by danielm3         ###   ########.fr       */
+/*   Updated: 2025/05/24 15:34:40 by danielm3         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ void *mlx_new_image(void *mlx_ptr, int width, int height);
 // mlx_ptr: the MLX instance
 // width, height: size of the image in pixels
 // Returns a pointer to the image object.
+// Returns an opaque handle (an internal MLX struct)
+// that represents your image. It’s not the raw pixel buffer.
 
 char *mlx_get_data_addr(void *img_ptr, int *bits_per_pixel, int *line_length, int *endian);
 // Gives access to the image's raw pixel memory buffer.
@@ -33,7 +35,9 @@ char *mlx_get_data_addr(void *img_ptr, int *bits_per_pixel, int *line_length, in
 // bits_per_pixel: pointer to an int that will hold how many bits per pixel (usually 32)
 // line_length: pointer to an int that will hold the number of bytes per row (may include padding)
 // endian: pointer to an int that will be set to 0 (little-endian) or 1 (big-endian)
-// Returns a pointer to the beginning of the image's memory.
+// Returns eturns a pointer into that handle’s pixel memory. That pointer typically points 
+// to the very first byte of the pixel data, but it’s a different pointer value than the 
+// handle itself.
 
 int mlx_put_image_to_window(void *mlx_ptr, void *win_ptr, void *img_ptr, int x, int y);
 // Displays the image (created and drawn in memory) onto the window.
