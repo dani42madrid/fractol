@@ -6,7 +6,7 @@
 /*   By: danielm3 <danielm3@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 21:08:30 by danielm3          #+#    #+#             */
-/*   Updated: 2025/05/24 17:21:50 by danielm3         ###   ########.fr       */
+/*   Updated: 2025/05/24 17:38:25 by danielm3         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ typedef struct s_mlx
 	int		endian;
 }	t_mlx;
 
-typedef struct s_map_cfg
+typedef struct s_map
 {
 	double	x_min;
 	double	x_max;
@@ -43,16 +43,18 @@ typedef struct s_map_cfg
 	double	cr;
 	double	ci;
 	int		max_iter;
-}	t_map_cfg;
+}	t_map;
 
 /* args.c: Argument validation */
 void	check_args(int argc, char **argv);
 
 /* fractol.c: Main coordination for the fractal generation and rendering */
 void	mlx_and_img_creation(t_mlx *mlx);
-double	map_x(t_mlx *mlx, t_map_cfg *cfg, int x);
-double	map_y(t_mlx *mlx, t_map_cfg *cfg, int y);
-int		escape_iterations(double zr, double zi, t_map_cfg *cfg);
+double	map_x(t_mlx *mlx, t_map *map, int x);
+double	map_y(t_mlx *mlx, t_map *map, int y);
+int		escape_iterations(double zr, double zi, t_map *map);
 void	put_pixel(t_mlx *mlx, int x, int y, int colour);
+
+void	init_map_struct(t_map *map);
 
 #endif

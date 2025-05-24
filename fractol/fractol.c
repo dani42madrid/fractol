@@ -6,7 +6,7 @@
 /*   By: danielm3 <danielm3@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 17:03:31 by danielm3          #+#    #+#             */
-/*   Updated: 2025/05/24 17:23:49 by danielm3         ###   ########.fr       */
+/*   Updated: 2025/05/24 17:39:43 by danielm3         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@
 	real‐axis coordinate in the complex‐plane window via linear 
 	interpolation.
 */
-double	map_x(t_mlx *mlx, t_map_cfg *cfg, int x)
+double	map_x(t_mlx *mlx, t_map *map, int x)
 {
-	return (cfg->x_min + (double)x / (mlx->width - 1)
-		* (cfg->x_max - cfg->x_min));
+	return (map->x_min + (double)x / (mlx->width - 1)
+		* (map->x_max - map->x_min));
 }
 
 /*
@@ -28,10 +28,10 @@ double	map_x(t_mlx *mlx, t_map_cfg *cfg, int x)
 	imaginary‐axis coordinate in the complex‐plane window via linear 
 	interpolation.
 */
-double	map_y(t_mlx *mlx, t_map_cfg *cfg, int y)
+double	map_y(t_mlx *mlx, t_map *map, int y)
 {
-	return (cfg->y_min + (double)y / (mlx->height - 1)
-		* (cfg->y_max - cfg->y_min));
+	return (map->y_min + (double)y / (mlx->height - 1)
+		* (map->y_max - map->y_min));
 }
 
 /*
@@ -41,16 +41,16 @@ double	map_y(t_mlx *mlx, t_map_cfg *cfg, int y)
 	which is is the defining iteration for the classic quadratic fractals:
 	Mandelbrot and Julia sets. 
 */
-int	escape_iterations(double zr, double zi, t_map_cfg *cfg)
+int	escape_iterations(double zr, double zi, t_map *map)
 {
 	int		iter;
 	double	tmp;
 
 	iter = 0;
-	while (zr * zr + zi * zi <= 4.0 && iter < cfg->max_iter)
+	while (zr * zr + zi * zi <= 4.0 && iter < map->max_iter)
 	{
-		tmp = zr * zr - zi * zi + cfg->cr;
-		zi = 2.0 * zr * zi + cfg->ci;
+		tmp = zr * zr - zi * zi + map->cr;
+		zi = 2.0 * zr * zi + map->ci;
 		zr = tmp;
 		iter++;
 	}
@@ -67,7 +67,14 @@ void	mlx_and_img_creation(t_mlx *mlx)
 			&mlx->line_length, &mlx->endian);
 }
 
+void	init_map_struct(char **argv, t_map *map)
+{
+	
+}
+
 void	put_pixel(t_mlx *mlx, int x, int y, int colour)
 {
+	int	offset;
+	
 	
 }

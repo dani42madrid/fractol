@@ -6,7 +6,7 @@
 /*   By: danielm3 <danielm3@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 14:15:34 by danielm3          #+#    #+#             */
-/*   Updated: 2025/05/22 20:42:21 by danielm3         ###   ########.fr       */
+/*   Updated: 2025/05/24 18:28:10 by danielm3         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,21 +39,15 @@ static int	decimals_and_range_check(char *s)
 	return (1);
 }
 
-void	check_args(int argc, char **argv)
+void	check_args(int argc, char **argv, t_map *map)
 {
-/* 	double	real;
-	double	imaginary;
-
-	real = 0;
-	imaginary = 0; */
 	if (argc == 2 && !ft_strncmp(argv[1], "mandelbrot", 11))
-		return ;
-	else if (argc == 2 && !ft_strncmp(argv[1], "julia", 6))
-		return ; // CHANGE THIS TO CALL JULIA WITH DEFAULT VALUES
-	else if (argc == 4 && !ft_strncmp(argv[1], "julia", 6)
-		&& decimals_and_range_check(argv[2])
-		&& decimals_and_range_check(argv[3]))
-		return ;
+		init_mandelbrot(map);
+	else if ((argc == 2 && !ft_strncmp(argv[1], "julia", 6))
+		|| (argc == 4 && !ft_strncmp(argv[1], "julia", 6)
+			&& decimals_and_range_check(argv[2])
+			&& decimals_and_range_check(argv[3])))
+		init_julia(argc, argv, map);
 	else
 		print_wrong_args();
 }
