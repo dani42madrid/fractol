@@ -6,7 +6,7 @@
 /*   By: danielm3 <danielm3@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 17:03:31 by danielm3          #+#    #+#             */
-/*   Updated: 2025/05/23 13:50:05 by danielm3         ###   ########.fr       */
+/*   Updated: 2025/05/24 12:47:38 by danielm3         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,4 +57,13 @@ int	escape_iterations(double cr, double ci, int max_iter)
 		iter++;
 	}
 	return (iter);
+}
+
+void	mlx_and_img_creation(t_mlx *mlx, int width, int height)
+{
+	mlx->mlx_ptr = mlx_init();
+	mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, width, height, "fractol");
+	mlx->img_ptr = mlx_new_image(mlx->mlx_ptr, width, height);
+	mlx->data_address = mlx_get_data_addr(mlx->img_ptr, &mlx->bpp,
+			&mlx->line_length, &mlx->endian);
 }
