@@ -6,7 +6,7 @@
 /*   By: danielm3 <danielm3@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 10:20:30 by danielm3          #+#    #+#             */
-/*   Updated: 2025/05/25 13:45:08 by danielm3         ###   ########.fr       */
+/*   Updated: 2025/05/25 16:23:15 by danielm3         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,30 +24,3 @@ int	main(int argc, char **argv)
 	mlx_loop(mlx.mlx_ptr);
 	return (0);
 }
-/* 
-
-typedef struct s_mlx
-{
-	void	*mlx_ptr;
-	int		width;
-	int		height;
-	void	*win_ptr;
-	void	*img_ptr;
-	char	*data_address;
-	int		bpp;
-	int		line_length;
-	int		endian;
-}	t_mlx;
-
-typedef struct s_map
-{
-	double	x_min;
-	double	x_max;
-	double	y_min;
-	double	y_max;
-	double	cr;
-	double	ci;
-	int		max_iter;
-}	t_map;
-	
-*/

@@ -1,38 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol.c                                          :+:      :+:    :+:   */
+/*   rendering.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: danielm3 <danielm3@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/22 17:03:31 by danielm3          #+#    #+#             */
-/*   Updated: 2025/05/25 14:34:27 by danielm3         ###   ########.fr       */
+/*   Created: 2025/05/25 16:01:34 by danielm3          #+#    #+#             */
+/*   Updated: 2025/05/25 16:25:16 by danielm3         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-
-/*	
-	Converts a pixel’s column index in the window into the corresponding
-	real‐axis coordinate in the complex‐plane window via linear 
-	interpolation.
-*/
-double	map_x(t_mlx *mlx, t_map *map, int x)
-{
-	return (map->x_min + (double)x / (mlx->width - 1)
-		* (map->x_max - map->x_min));
-}
-
-/*
-	Converts a pixel’s row index in the window into the corresponding
-	imaginary‐axis coordinate in the complex‐plane window via linear 
-	interpolation.
-*/
-double	map_y(t_mlx *mlx, t_map *map, int y)
-{
-	return (map->y_min + (double)y / (mlx->height - 1)
-		* (map->y_max - map->y_min));
-}
 
 /*
 	Calculates how many iterations the sequence zₙ₊₁ = zₙ² + c stays bounded
@@ -57,19 +35,21 @@ int	escape_iterations(double zr, double zi, t_map *map)
 	return (iter);
 }
 
-void	mlx_and_img_creation(t_mlx *mlx)
+int	pick_colour(int iter, int max_iter)
 {
-	mlx->width = 1280;
-	mlx->height = 1280;
-	mlx->mlx_ptr = mlx_init();
-	mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, mlx->width, mlx->height,
-			"fractol");
-	mlx->img_ptr = mlx_new_image(mlx->mlx_ptr, mlx->width, mlx->height);
-	mlx->data_address = mlx_get_data_addr(mlx->img_ptr, &mlx->bpp,
-			&mlx->line_length, &mlx->endian);
-}
+	double	t;
+	int		r;
+	int		g;
+	int		b;
+	int		colour;
 
-int	pick_colour()
+	t = (double)iter / max_iter;
+	r = (int)(9 * (1 - t) * t * t * t * 255);
+	g = (int)(15 * (1 - t) * (1 - t) * t * t * 255);
+	b = (int)(8.5 * (1 - t) * (1 - t) * (1 - t) * t * 255);
+	colour = (r << 16) | (g << 8) | b;
+	return (colour);
+}
 
 void	render(t_mlx *mlx, t_map *map)
 {
@@ -78,15 +58,14 @@ void	render(t_mlx *mlx, t_map *map)
 	int		iter;
 	int		colour;
 
-	x = 0;
 	y = 0;
 	while (y < mlx->height)
 	{
 		x = 0;
 		while (x < mlx->width)
 		{
-			iter = escape_iterations(map_x(mlx, map, x),  
-				map_y(mlx, map, y), map);
+			iter = escape_iterations(map_x(mlx, map, x),
+					map_y(mlx, map, y), map);
 			colour = pick_colour(iter, map->max_iter);
 			put_pixel(mlx, x, y, colour);
 			x++;
@@ -97,7 +76,21 @@ void	render(t_mlx *mlx, t_map *map)
 
 void	put_pixel(t_mlx *mlx, int x, int y, int colour)
 {
-	int	offset;
-	
-	
+	int		offset;
+	char	*pixel;
+
+	offset = y * mlx->line_length + x * (mlx->bpp / 8);
+	pixel = mlx->data_address + offset;
+	if (mlx->endian == 0)
+	{
+		pixel[0] = colour & 0xFF;
+		pixel[1] = (colour >> 8) & 0xFF;
+		pixel[2] = (colour >> 16) & 0xFF;
+	}
+	else
+	{
+		pixel[2] = colour & 0xFF;
+		pixel[1] = (colour >> 8) & 0xFF;
+		pixel[0] = (colour >> 16) & 0xFF;
+	}
 }

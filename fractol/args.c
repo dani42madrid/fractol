@@ -6,22 +6,26 @@
 /*   By: danielm3 <danielm3@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 14:15:34 by danielm3          #+#    #+#             */
-/*   Updated: 2025/05/25 13:11:38 by danielm3         ###   ########.fr       */
+/*   Updated: 2025/05/25 16:19:18 by danielm3         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-static void	print_wrong_args(void)
+void	check_args(int argc, char **argv, t_map *map)
 {
-	ft_putendl_fd("\nIncorrect arguments. Please enter:\n", 2);
-	ft_putendl_fd("Option 1: mandelbrot\nor", 2);
-	ft_putendl_fd("Option 2: julia <real number> <imaginary number> "
-		"(number range: -2 to + 2)\n", 2);
-	exit(EXIT_FAILURE);
+	if (argc == 2 && !ft_strncmp(argv[1], "mandelbrot", 11))
+		init_mandelbrot(map);
+	else if (!ft_strncmp(argv[1], "julia", 6)
+		&& (argc == 2 || (argc == 4
+				&& decimals_and_range_check(argv[2])
+				&& decimals_and_range_check(argv[3]))))
+		init_julia(argc, argv, map);
+	else
+		print_wrong_args();
 }
 
-static int	decimals_and_range_check(char *s)
+int	decimals_and_range_check(char *s)
 {
 	int		count;
 	double	number;
@@ -39,15 +43,11 @@ static int	decimals_and_range_check(char *s)
 	return (1);
 }
 
-void	check_args(int argc, char **argv, t_map *map)
+void	print_wrong_args(void)
 {
-	if (argc == 2 && !ft_strncmp(argv[1], "mandelbrot", 11))
-		init_mandelbrot(map);
-	else if (!ft_strncmp(argv[1], "julia", 6)
-		&& (argc == 2 || (argc == 4
-				&& decimals_and_range_check(argv[2])
-				&& decimals_and_range_check(argv[3]))))
-		init_julia(argc, argv, map);
-	else
-		print_wrong_args();
+	ft_putendl_fd("\nIncorrect arguments. Please enter:\n", 2);
+	ft_putendl_fd("Option 1: mandelbrot\nor", 2);
+	ft_putendl_fd("Option 2: julia <real number> <imaginary number> "
+		"(number range: -2 to + 2)\n", 2);
+	exit(EXIT_FAILURE);
 }

@@ -6,7 +6,7 @@
 /*   By: danielm3 <danielm3@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 21:08:30 by danielm3          #+#    #+#             */
-/*   Updated: 2025/05/24 17:38:25 by danielm3         ###   ########.fr       */
+/*   Updated: 2025/05/25 16:22:16 by danielm3         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,15 +46,23 @@ typedef struct s_map
 }	t_map;
 
 /* args.c: Argument validation */
-void	check_args(int argc, char **argv);
+void	check_args(int argc, char **argv, t_map *map);
+int		decimals_and_range_check(char *s);
+void	print_wrong_args(void);
 
-/* fractol.c: Main coordination for the fractal generation and rendering */
+/* mapping_and_init.c: general mapping representation and */
+/* map structure initialization for the different fractals*/
 void	mlx_and_img_creation(t_mlx *mlx);
 double	map_x(t_mlx *mlx, t_map *map, int x);
 double	map_y(t_mlx *mlx, t_map *map, int y);
+void	init_mandelbrot(t_map *map);
+void	init_julia(int argc, char **argv, t_map *map);
+
+/* rendering.c: functions that decide how */
 int		escape_iterations(double zr, double zi, t_map *map);
+int		pick_colour(int iter, int max_iter);
+void	render(t_mlx *mlx, t_map *map);
 void	put_pixel(t_mlx *mlx, int x, int y, int colour);
 
-void	init_map_struct(t_map *map);
 
 #endif
