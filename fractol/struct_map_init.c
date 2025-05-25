@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   t_map_init.c                                       :+:      :+:    :+:   */
+/*   struct_map_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: danielm3 <danielm3@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -14,6 +14,8 @@
 
 void	init_mandelbrot(t_map *map)
 {
+	map->cr = 0;
+	map->ci = 0;
 	map->x_min = -2.0;
 	map->x_max = 1.0;
 	map->y_min = -1.0;

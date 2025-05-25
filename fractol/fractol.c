@@ -6,7 +6,7 @@
 /*   By: danielm3 <danielm3@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 17:03:31 by danielm3          #+#    #+#             */
-/*   Updated: 2025/05/24 18:38:42 by danielm3         ###   ########.fr       */
+/*   Updated: 2025/05/25 13:42:45 by danielm3         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,29 @@ void	mlx_and_img_creation(t_mlx *mlx)
 			&mlx->line_length, &mlx->endian);
 }
 
-void	init_map_struct(char **argv, t_map *map)
+
+void	render(t_mlx *mlx, t_map *map)
 {
-	
+	int		x;
+	int		y;
+	int		iter;
+	int		colour;
+
+	x = 0;
+	y = 0;
+	while (y < mlx->height)
+	{
+		x = 0;
+		while (x < mlx->width)
+		{
+			iter = escape_iterations(map_x(mlx, map, x),  
+				map_y(mlx, map, y), map);
+			colour = pick_colour(iter, map->max_iter);
+			put_pixel(mlx, x, y, colour);
+			x++;
+		}
+		y++;
+	}
 }
 
 void	put_pixel(t_mlx *mlx, int x, int y, int colour)

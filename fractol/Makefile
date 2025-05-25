@@ -20,7 +20,7 @@ CC := cc
 CFLAGS := -Wall -Wextra -Werror -I. -I$(LIBFT_DIR) -I$(MLX_DIR)
 
 # Source files for your project
-SRC := main.c args.c fractol.c # add additional .c files as you implement them
+SRC := main.c args.c fractol.c struct_map_init.c # add additional .c files as you implement them
 
 # Object files, automatically generated from SRC
 OBJ := $(SRC:%.c=%.o)
