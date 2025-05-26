@@ -6,7 +6,7 @@
 /*   By: danielm3 <danielm3@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 14:15:34 by danielm3          #+#    #+#             */
-/*   Updated: 2025/05/25 16:19:18 by danielm3         ###   ########.fr       */
+/*   Updated: 2025/05/25 21:34:23 by danielm3         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 void	check_args(int argc, char **argv, t_map *map)
 {
-	if (argc == 2 && !ft_strncmp(argv[1], "mandelbrot", 11))
+	if (argc == 1)
+		print_wrong_args();
+	else if (argc == 2 && !ft_strncmp(argv[1], "mandelbrot", 11))
 		init_mandelbrot(map);
 	else if (!ft_strncmp(argv[1], "julia", 6)
 		&& (argc == 2 || (argc == 4

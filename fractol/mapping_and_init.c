@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   struct_map_init.c                                       :+:      :+:    :+:   */
+/*   mapping_and_init.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: danielm3 <danielm3@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/24 17:43:19 by danielm3          #+#    #+#             */
-/*   Updated: 2025/05/24 18:25:27 by danielm3         ###   ########.fr       */
+/*   Created: 2025/05/26 11:39:56 by danielm3          #+#    #+#             */
+/*   Updated: 2025/05/26 12:03:10 by danielm3         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,11 @@ void	init_mandelbrot(t_map *map)
 	map->ci = 0;
 	map->x_min = -2.0;
 	map->x_max = 1.0;
-	map->y_min = -1.0;
-	map->y_max = 1.0;
-	map->max_iter = 100;
+	map->y_min = -1.5;
+	map->y_max = 1.5;
+	map->max_iter = 300;
+	map->type = TYPE_MANDEL;
+
 }
 
 void	init_julia(int argc, char **argv, t_map *map)
@@ -63,7 +65,8 @@ void	init_julia(int argc, char **argv, t_map *map)
 	map->x_max = 1.5;
 	map->y_min = -1.5;
 	map->y_max = 1.5;
-	map->max_iter = 100;
+	map->max_iter = 300;
+	map->type = TYPE_JULIA;
 	if (argc == 2)
 	{
 		map->cr = -0.7269;

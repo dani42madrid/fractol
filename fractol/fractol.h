@@ -6,7 +6,7 @@
 /*   By: danielm3 <danielm3@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 21:08:30 by danielm3          #+#    #+#             */
-/*   Updated: 2025/05/25 16:22:16 by danielm3         ###   ########.fr       */
+/*   Updated: 2025/05/26 11:36:11 by danielm3         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+
+# define TYPE_MANDEL 0
+# define TYPE_JULIA  1
 
 typedef struct s_mlx
 {
@@ -43,6 +46,7 @@ typedef struct s_map
 	double	cr;
 	double	ci;
 	int		max_iter;
+	int		type;
 }	t_map;
 
 /* args.c: Argument validation */
@@ -59,10 +63,10 @@ void	init_mandelbrot(t_map *map);
 void	init_julia(int argc, char **argv, t_map *map);
 
 /* rendering.c: functions that decide how */
-int		escape_iterations(double zr, double zi, t_map *map);
 int		pick_colour(int iter, int max_iter);
 void	render(t_mlx *mlx, t_map *map);
 void	put_pixel(t_mlx *mlx, int x, int y, int colour);
-
+int		escape_mandelbrot(double c_re, double c_im, int max_iter);
+int		escape_julia(double z_re, double z_im, t_map *map);
 
 #endif
