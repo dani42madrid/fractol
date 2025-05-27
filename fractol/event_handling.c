@@ -1,28 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   event_handling.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: danielm3 <danielm3@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/22 10:20:30 by danielm3          #+#    #+#             */
-/*   Updated: 2025/05/27 11:32:35 by danielm3         ###   ########.fr       */
+/*   Created: 2025/05/27 11:07:57 by danielm3          #+#    #+#             */
+/*   Updated: 2025/05/27 13:53:41 by danielm3         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-int	main(int argc, char **argv)
+int	on_key(int keycode, void *param)
 {
-	t_mlx	mlx;
-	t_map	map;
+	t_mlx	*mlx;
 
-	check_args(argc, argv, &map);
-	mlx_and_img_creation(&mlx);
-	render(&mlx, &map);
-	mlx_put_image_to_window(mlx.mlx_ptr, mlx.win_ptr, mlx.img_ptr, 0, 0);
-	mlx_key_hook(mlx.win_ptr, on_key, &mlx);
-	mlx_hook(mlx.win_ptr, 17, 0L, on_close, &mlx);
-	mlx_loop(mlx.mlx_ptr);
+	if (keycode == XK_Escape)
+	{
+		mlx = (t_mlx *)param;
+		mlx_destroy_image(mlx->mlx_ptr, mlx->img_ptr);
+		mlx_destroy_window(mlx->mlx_ptr, mlx->win_ptr);
+		exit(0);
+	}
 	return (0);
 }
+
+int	on_close(void *param)
+{
+	t_mlx	*mlx;
+
+	mlx = (t_mlx *)param;
+	mlx_destroy_image(mlx->mlx_ptr, mlx->img_ptr);
+	mlx_destroy_window(mlx->mlx_ptr, mlx->win_ptr);
+	exit(0);
+	return (0);
+}
+

@@ -6,7 +6,7 @@
 /*   By: danielm3 <danielm3@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 21:08:30 by danielm3          #+#    #+#             */
-/*   Updated: 2025/05/26 11:36:11 by danielm3         ###   ########.fr       */
+/*   Updated: 2025/05/27 13:54:49 by danielm3         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "libft/libft.h"
 # include "minilibx-linux/mlx.h"
+# include <X11/keysym.h>
 # include <fcntl.h>
 # include <math.h>
 # include <stdio.h>
@@ -68,5 +69,11 @@ void	render(t_mlx *mlx, t_map *map);
 void	put_pixel(t_mlx *mlx, int x, int y, int colour);
 int		escape_mandelbrot(double c_re, double c_im, int max_iter);
 int		escape_julia(double z_re, double z_im, t_map *map);
+
+/* eventh_handling.c: handles user input, like key pressing */
+/* or mouse actions. */
+
+int	on_key(int keycode, void *param);
+int	on_close(void *param);
 
 #endif

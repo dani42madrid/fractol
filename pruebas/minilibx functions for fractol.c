@@ -6,7 +6,7 @@
 /*   By: danielm3 <danielm3@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 12:29:05 by danielm3          #+#    #+#             */
-/*   Updated: 2025/05/24 15:34:40 by danielm3         ###   ########.fr       */
+/*   Updated: 2025/05/27 13:43:01 by danielm3         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,3 +69,77 @@ int mlx_destroy_window(void *mlx_ptr, void *win_ptr);
 // Destroys the given window and frees its resources.
 // mlx_ptr: the MLX instance
 // win_ptr: the window to destroy
+
+
+/* Here are the most common event codes and their matching masks:
+
+Event codes (second argument to mlx_hook):
+
+KeyPress        = 2
+KeyRelease      = 3
+ButtonPress     = 4
+ButtonRelease   = 5
+MotionNotify    = 6
+EnterNotify     = 7
+LeaveNotify     = 8
+Expose          = 12
+DestroyNotify   = 17
+Event masks (third argument to mlx_hook):
+
+NoEventMask           = 0L
+KeyPressMask          = (1L<<0)
+KeyReleaseMask        = (1L<<1)
+ButtonPressMask       = (1L<<2)
+ButtonReleaseMask     = (1L<<3)
+PointerMotionMask     = (1L<<6)
+ExposureMask          = (1L<<15)
+StructureNotifyMask   = (1L<<17)
+17 with mask 0L means “listen for DestroyNotify (window-close) and
+ no extra sub-events.”
+
+You can combine masks (e.g. KeyPressMask | ExposureMask) if you
+need multiple event types in one hook.
+
+
+Tú dijiste:
+explain to me what those masks are doing, i dont understand that 
+syntac
+
+Event masks in X11 (and thus in MiniLibX) are just bitfields where 
+each bit enables delivery of a particular class of event. The syntax
+
+KeyPressMask = (1L << 0)
+ButtonPressMask = (1L << 2)
+StructureNotifyMask = (1L << 17)
+means:
+
+1L << n
+
+Take the number 1 (a long integer), then shift its single “1” bit 
+left by n positions.
+
+The result is a value where only bit n is set.
+
+E.g. (1L<<0) is 0b…0001, (1L<<2) is 0b…0100, (1L<<17) is a 1 in 
+the 18th bit position.
+
+Why masks?
+
+When you call mlx_hook, you give it a mask so the underlying X11
+ connection only sends you the kinds of events you asked for 
+ (key presses, mouse clicks, window structure changes, etc.).
+
+If you OR together multiple masks, e.g.
+
+KeyPressMask | ExposureMask
+you’ll receive both key‐press events and expose (redraw) events 
+in that one hook.
+
+The special case 0L
+
+Passing 0L means “no extra mask bits”—you rely only on the event 
+code (like 17 for DestroyNotify) and don’t need to filter sub‐types.
+
+So masks are just bit flags. By shifting a 1 into different bit 
+positions, you turn on the exact bits corresponding to the event 
+classes you want. */

@@ -6,7 +6,7 @@
 /*   By: danielm3 <danielm3@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 11:39:56 by danielm3          #+#    #+#             */
-/*   Updated: 2025/05/26 12:03:10 by danielm3         ###   ########.fr       */
+/*   Updated: 2025/05/27 14:02:12 by danielm3         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	mlx_and_img_creation(t_mlx *mlx)
 {
-	mlx->width = 800;
-	mlx->height = 800;
+	mlx->width = 1280;
+	mlx->height = 1280;
 	mlx->mlx_ptr = mlx_init();
 	mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, mlx->width, mlx->height,
 			"fractol");
