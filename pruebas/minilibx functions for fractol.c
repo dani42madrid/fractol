@@ -6,7 +6,7 @@
 /*   By: danielm3 <danielm3@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 12:29:05 by danielm3          #+#    #+#             */
-/*   Updated: 2025/05/27 13:43:01 by danielm3         ###   ########.fr       */
+/*   Updated: 2025/05/27 15:27:29 by danielm3         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,4 +142,14 @@ code (like 17 for DestroyNotify) and don’t need to filter sub‐types.
 
 So masks are just bit flags. By shifting a 1 into different bit 
 positions, you turn on the exact bits corresponding to the event 
-classes you want. */
+classes you want. 
+
+Main mouse button codes in X11 (used by MiniLibX on Linux):
+
+1 → Left click
+2 → Middle click
+3 → Right click
+4 → Scroll up (wheel up)
+5 → Scroll down (wheel down)
+
+*/

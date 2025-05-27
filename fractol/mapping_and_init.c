@@ -6,7 +6,7 @@
 /*   By: danielm3 <danielm3@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 11:39:56 by danielm3          #+#    #+#             */
-/*   Updated: 2025/05/27 14:02:12 by danielm3         ###   ########.fr       */
+/*   Updated: 2025/05/27 23:08:10 by danielm3         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,8 @@ void	init_mandelbrot(t_map *map)
 	map->x_max = 1.0;
 	map->y_min = -1.5;
 	map->y_max = 1.5;
-	map->max_iter = 300;
+	map->max_iter = 55;
 	map->type = TYPE_MANDEL;
-
 }
 
 void	init_julia(int argc, char **argv, t_map *map)
@@ -65,7 +64,7 @@ void	init_julia(int argc, char **argv, t_map *map)
 	map->x_max = 1.5;
 	map->y_min = -1.5;
 	map->y_max = 1.5;
-	map->max_iter = 300;
+	map->max_iter = 55;
 	map->type = TYPE_JULIA;
 	if (argc == 2)
 	{
