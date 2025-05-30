@@ -6,7 +6,7 @@
 /*   By: danielm3 <danielm3@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 12:29:05 by danielm3          #+#    #+#             */
-/*   Updated: 2025/05/27 15:27:29 by danielm3         ###   ########.fr       */
+/*   Updated: 2025/05/30 12:44:23 by danielm3         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ char *mlx_get_data_addr(void *img_ptr, int *bits_per_pixel, int *line_length, in
 // bits_per_pixel: pointer to an int that will hold how many bits per pixel (usually 32)
 // line_length: pointer to an int that will hold the number of bytes per row (may include padding)
 // endian: pointer to an int that will be set to 0 (little-endian) or 1 (big-endian)
-// Returns eturns a pointer into that handle’s pixel memory. That pointer typically points 
+// Returns a pointer into that handle’s pixel memory. That pointer typically points 
 // to the very first byte of the pixel data, but it’s a different pointer value than the 
 // handle itself.
 
@@ -152,4 +152,26 @@ Main mouse button codes in X11 (used by MiniLibX on Linux):
 4 → Scroll up (wheel up)
 5 → Scroll down (wheel down)
 
+*/
+
+/* 
+✅ In Julia:
+c is a constant, chosen once (e.g. from user input)
+
+You vary z₀ (each pixel is a different z₀)
+
+You ask: “For this fixed c, which starting points z₀ stay bounded?”
+
+✅ In Mandelbrot:
+z₀ is always 0
+
+c varies (each pixel is a different c)
+
+You ask: “Which complex numbers c keep the sequence starting at 0 bounded?”
+
+So yes:
+
+In Julia, c = constant
+
+In Mandelbrot, c = pixel (i.e. variable)
 */

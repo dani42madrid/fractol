@@ -6,7 +6,7 @@
 /*   By: danielm3 <danielm3@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 21:08:30 by danielm3          #+#    #+#             */
-/*   Updated: 2025/05/27 23:14:13 by danielm3         ###   ########.fr       */
+/*   Updated: 2025/05/30 11:06:00 by danielm3         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,13 +79,10 @@ int		escape_julia(double z_re, double z_im, t_map *map);
 /* eventh_handling.c: handles user input, like key pressing */
 /* or mouse actions. */
 
-int		on_key(int keycode, void *param);
 int		on_close(void *param);
+int		on_key_press(int keycode, void *param);
 int		mouse_zoom(int button, int x, int y, void *param);
 int		pan_x(int keycode, void *param);
 int		pan_y(int keycode, void *param);
-
-/* eventh_handling_2.c: additional functions for event handling. */
-int		on_key_press(int keycode, void *param);
 
 #endif

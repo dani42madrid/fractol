@@ -1,6 +1,4 @@
-# Makefile for the fractol project
-
-# Executable name
+# Name of the final executable
 NAME := fractol
 
 # Directory containing libft (42's C utility library)
@@ -19,16 +17,16 @@ CC := cc
 #   -I$(MLX_DIR)          : add MiniLibX include directory
 CFLAGS := -Wall -Wextra -Werror -I. -I$(LIBFT_DIR) -I$(MLX_DIR)
 
-# Source files for your project
+# Project source files
 SRC := main.c args.c event_handling.c mapping_and_init.c rendering.c \
 
 # Object files, automatically generated from SRC
 OBJ := $(SRC:%.c=%.o)
 
-# Static library target for libft
+# Path to the compiled libft library
 LIBFT := $(LIBFT_DIR)/libft.a
 
-# Static library target for MiniLibX
+# Path to the compiled MiniLibX library
 MLX := $(MLX_DIR)/libmlx_Linux.a
 
 # Linker flags for MLX and other libraries:
@@ -40,44 +38,40 @@ MLX := $(MLX_DIR)/libmlx_Linux.a
 #   -lz             link the compression library (zlib)
 MLX_FLAGS := -L$(MLX_DIR) -lmlx_Linux -lXext -lX11 -lm -lz
 
-# Default rule: build libft, MLX, then link the executable
+# Default rule that builds the project and its dependencies:
+# build libft, MLX, then link the executable
 all: $(LIBFT) $(MLX) $(NAME)
 
-# Link the executable:
-#   $(OBJ)      : project object files
-#   $(LIBFT)    : libft static library
-#   $(MLX_FLAGS): MLX and other linker flags
-#   -o $(NAME)  : output binary name
+# Links the final executable from object files and libraries
+# This rule avoids relinking if object files haven't changed
 $(NAME): $(OBJ) $(LIBFT) $(MLX)
 	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(MLX_FLAGS) -o $(NAME)
 
-# Build libft library by invoking its own Makefile
+# Builds the libft library using its Makefile
 $(LIBFT):
 	make -C $(LIBFT_DIR)
 
-# Build MiniLibX library by invoking its own Makefile
+# Builds the MiniLibX library using its Makefile
 $(MLX):
 	make -C $(MLX_DIR)
 
-# Pattern rule: compile .c into .o
-#   $< : source file
-#   $@ : object file
+# Compiles .c source files into .o object files
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
-# Remove object files
+# Removes the executable and calls clean in submodules
 clean:
 	rm -f $(OBJ)
 	make -C $(LIBFT_DIR) clean
 	make -C $(MLX_DIR) clean
 
-# Full clean: remove binary and run fclean/clean of sublibraries
+# Removes all generated files including the executable
 fclean: clean
 	rm -f $(NAME)
 	make -C $(LIBFT_DIR) fclean
 	make -C $(MLX_DIR) clean
 
-# Rebuild everything from scratch
+# Rebuilds the entire project from scratch
 re: fclean all
 
 # Declare phony targets to avoid conflicts with files of the same name

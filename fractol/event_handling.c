@@ -6,12 +6,14 @@
 /*   By: danielm3 <danielm3@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 11:07:57 by danielm3          #+#    #+#             */
-/*   Updated: 2025/05/28 13:32:50 by danielm3         ###   ########.fr       */
+/*   Updated: 2025/05/30 10:03:24 by danielm3         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
+/* Closes the window and frees memory by destroying images, window, and display
+then exits the program. */
 int	on_close(void *param)
 {
 	t_mlx	*mlx;
@@ -22,9 +24,10 @@ int	on_close(void *param)
 	mlx_destroy_display(mlx->mlx_ptr);
 	free(mlx->mlx_ptr);
 	exit(0);
-	return (0);
 }
 
+/* Handles key input like ESC or arrow keys to close the program or move 
+the view and updates the window if needed. */
 int	on_key_press(int keycode, void *param)
 {
 	t_env	*env;
@@ -45,6 +48,8 @@ int	on_key_press(int keycode, void *param)
 	return (0);
 }
 
+/* Zooms the fractal view at the mouse position by mapping the click 
+to the complex plane and resizing the view around that point. */
 int	mouse_zoom(int button, int x, int y, void *param)
 {
 	t_env	*env;
@@ -74,6 +79,8 @@ int	mouse_zoom(int button, int x, int y, void *param)
 	return (0);
 }
 
+/* Moves the fractal view left or right by shifting the x-axis bounds
+and redrawing the updated view. */
 int	pan_x(int keycode, void *param)
 {
 	t_env	*env;
@@ -97,6 +104,8 @@ int	pan_x(int keycode, void *param)
 	return (0);
 }
 
+/* Moves the fractal view up or down by shifting the y-axis bounds
+and redrawing the updated view. */
 int	pan_y(int keycode, void *param)
 {
 	t_env	*env;

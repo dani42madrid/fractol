@@ -6,7 +6,7 @@
 /*   By: danielm3 <danielm3@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 16:01:34 by danielm3          #+#    #+#             */
-/*   Updated: 2025/05/26 14:04:34 by danielm3         ###   ########.fr       */
+/*   Updated: 2025/05/30 11:28:40 by danielm3         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,13 @@
 	Both sets use the same iteration:
 	zₙ₊₁ = zₙ² + c
 
-	In the mandelbrot set, the first part of the equation is 0 and the second 
-	part is the pixel coordinate, and in the julia set, the first part of the 
-	equation is the pixel coordinate and the second part is the complex number 
-	entered by the user.
+	In Mandelbrot, z₀ = 0 and c = pixel coordinate.  
+	In Julia, z₀ = pixel coordinate and c = constant from user input.
 */
+
+/* Iterates Mandelbrot formula to check if point escapes.
+Returns number of iterations before escape or max_iter.
+Used to color each pixel based on escape time. */
 int	escape_mandelbrot(double c_re, double c_im, int max_iter)
 {
 	int		iter;
@@ -47,6 +49,9 @@ int	escape_mandelbrot(double c_re, double c_im, int max_iter)
 	return (iter);
 }
 
+/* Iterates Julia formula using given complex constant.
+Returns iteration count until escape or max_iter.
+Behavior depends on user-specified Julia parameters. */
 int	escape_julia(double z_re, double z_im, t_map *map)
 {
 	int		iter;
@@ -63,6 +68,9 @@ int	escape_julia(double z_re, double z_im, t_map *map)
 	return (iter);
 }
 
+/* Calculates color from iteration count using smooth gradients.
+Blue for fast escapes, green for mid, red for slow escapes.
+Returns black if the point is inside the fractal (no escape). */
 int	pick_colour(int iter, int max_iter)
 {
 	double	t;
@@ -75,6 +83,8 @@ int	pick_colour(int iter, int max_iter)
 	r = (int)(9 * (1 - t) * t * t * t * 255);
 	g = (int)(15 * (1 - t) * (1 - t) * t * t * 255);
 	b = (int)(8.5 * (1 - t) * (1 - t) * (1 - t) * t * 255);
+	if (iter < 2)
+		return (0x111111);
 	colour = (r << 16) | (g << 8) | b;
 	return (colour);
 }
