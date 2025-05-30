@@ -2,5 +2,7 @@
 ./fractol julia 0.285 0.01 300
 ./fractol julia -0.4 0.6 300
 ./fractol julia 0.355 0.355 300
-./fractol julia 0.3 0.5 300
-./fractol julia 0.37 -0.1 300
+
+
+valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./fractol mandelbrot
+valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./fractol julia -0.7269 0.1889 300

@@ -6,7 +6,7 @@
 /*   By: danielm3 <danielm3@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 12:29:05 by danielm3          #+#    #+#             */
-/*   Updated: 2025/05/30 14:31:47 by danielm3         ###   ########.fr       */
+/*   Updated: 2025/05/30 17:34:14 by danielm3         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -190,5 +190,16 @@ mlx_hook(mlx.win_ptr, 17, 0L, on_close, &mlx);
 
 - 17: the X11 event code for DestroyNotify (window close).
 - 0L: no mask needed for this event.
+
+mlx_mouse_hook(mlx.win_ptr, mouse_zoom, &env);
+int	mouse_zoom(int button, int x, int y, void *param)
+int mlx_int_param_ButtonPress(t_xvar *xvar, XEvent *ev, t_win_list *win)
+
+win->hooks[ButtonPress].hook(
+    ev->xbutton.button,  // passed as `button`
+    ev->xbutton.x,       // passed as `x`
+    ev->xbutton.y,       // passed as `y`
+    win->hooks[ButtonPress].param // passed as `param`
+);
 
 */

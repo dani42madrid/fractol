@@ -6,7 +6,7 @@
 /*   By: danielm3 <danielm3@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 11:39:56 by danielm3          #+#    #+#             */
-/*   Updated: 2025/05/30 13:49:08 by danielm3         ###   ########.fr       */
+/*   Updated: 2025/05/30 17:54:46 by danielm3         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 Creates a window and image of fixed size and stores image data address. */
 void	mlx_and_img_creation(t_mlx *mlx)
 {
-	mlx->width = 640;
-	mlx->height = 640;
+	mlx->width = 960;
+	mlx->height = 960;
 	mlx->mlx_ptr = mlx_init();
 	mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, mlx->width, mlx->height,
 			"fractol");
