@@ -6,7 +6,7 @@
 /*   By: danielm3 <danielm3@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 12:29:05 by danielm3          #+#    #+#             */
-/*   Updated: 2025/05/30 12:44:23 by danielm3         ###   ########.fr       */
+/*   Updated: 2025/05/30 14:31:47 by danielm3         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,4 +174,21 @@ So yes:
 In Julia, c = constant
 
 In Mandelbrot, c = pixel (i.e. variable)
+*/
+
+/*
+main:
+
+mlx_hook(mlx.win_ptr, 2, 1L << 0, on_key_press, &env);
+
+- 2: the X11 event code for KeyPress.
+- 1L << 0: the mask that enables listening 
+for key press events (KeyPressMask).
+
+
+mlx_hook(mlx.win_ptr, 17, 0L, on_close, &mlx);
+
+- 17: the X11 event code for DestroyNotify (window close).
+- 0L: no mask needed for this event.
+
 */

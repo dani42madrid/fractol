@@ -6,14 +6,14 @@
 /*   By: danielm3 <danielm3@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 11:07:57 by danielm3          #+#    #+#             */
-/*   Updated: 2025/05/30 10:03:24 by danielm3         ###   ########.fr       */
+/*   Updated: 2025/05/30 14:10:54 by danielm3         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-/* Closes the window and frees memory by destroying images, window, and display
-then exits the program. */
+/* Closes the window and frees memory by destroying images, window, display
+and the pointer to the connection, then exits the program. */
 int	on_close(void *param)
 {
 	t_mlx	*mlx;
@@ -87,7 +87,7 @@ int	pan_x(int keycode, void *param)
 	double	shift;
 
 	env = (t_env *)param;
-	shift = (env->map->x_max - env->map->x_min) * 0.1;
+	shift = (env->map->x_max - env->map->x_min) * 0.05;
 	if (keycode == XK_Left)
 	{
 		env->map->x_min -= shift;
